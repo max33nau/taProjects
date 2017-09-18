@@ -1,7 +1,62 @@
+#
+#
+# Python 3.6.1
+#
+# Author: Max Jacobsen
+#
+#
+
 import os
 import shutil
 from datetime import datetime, timedelta
 import pytz
+
+from tkinter import *
+import tkinter as tk
+from tkinter import messagebox
+from tkinter.filedialog import askdirectory
+
+#========= GUI FUNCTIONS
+
+def center_window(self, width,height):
+    screen_width = self.master.winfo_screenwidth()
+    screen_height = self.master.winfo_screenheight()
+    x = int((screen_width/2) - (width/2))
+    y = int((screen_height/2) - (height/2))
+    centerGeo = self.master.geometry('{}x{}+{}+{}'.format(width,height,x,y))
+    return centerGeo
+
+def ask_quit(self):
+    if messagebox.askokcancel("Exit Program", "Okay to exit application?"):
+        self.master.destroy()
+        os._exit(0)
+
+
+def set_file_path(self, folderName, selfLabel):
+    filename = askdirectory()
+    if filename:
+        setattr(self,folderName,filename)
+        selfLabel.config(text=filename)
+
+
+
+
+#======== DIRECTORY FUNCTIONS
+
+def copy_modified_files(src, dest) :
+    if os.path.exists(src) and os.path.exists(dest):
+        mod_found = False
+        for file_obj in os.listdir(src):
+            file_path = os.path.join(src, file_obj)
+            if(os.path.isfile(file_path) and os.path.splitext(file_path)[1] == '.txt'):
+                if(modified_in_last_24_hours(file_path)):
+                    shutil.copy(os.path.join(src, file_obj), os.path.join(dest, file_obj))
+                    mod_found = True
+                    print('Copied file {} from {} to {}.'.format(file_obj,src, dest))
+        if(not mod_found):
+            print('\n No files created or modified within the last 24 hours.')
+    else:
+        print('Source or destination folder not found')
 
 def create_directory(path) :
     try: 
@@ -22,19 +77,6 @@ def empty_directory_files(directory_path) :
                os.unlink(file_path)
     else :
         print('The file path {} does not exist so there is nothing to empty.'.format(directory_path))
-
-def copy_modified_files(src, dest) :
-    if os.path.exists(src) and os.path.exists(dest):
-        mod_found = False
-        for file_obj in os.listdir(src):
-            file_path = os.path.join(src, file_obj)
-            if(os.path.isfile(file_path) and os.path.splitext(file_path)[1] == '.txt'):
-                if(modified_in_last_24_hours(file_path)):
-                    shutil.copy(os.path.join(src, file_obj), os.path.join(dest, file_obj))
-                    mod_found = True
-                    print('Copied file {} from {} to {}.'.format(file_obj,src, dest))
-        if(not mod_found):
-            print('\n No files created or modified within the last 24 hours.')
 
 
 def modified_in_last_24_hours(file_path):
@@ -64,3 +106,6 @@ def get_file_mod_time(path):
         timestamp = modified
     path_time = datetime.utcfromtimestamp(timestamp)
     return pytz.utc.localize(path_time)
+
+
+    
