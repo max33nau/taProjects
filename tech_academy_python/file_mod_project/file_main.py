@@ -38,7 +38,7 @@ class ParentWindow(Frame):
         #windows specific event to catch when the user tries to leave, make it a good habbit to always pass in self
         self.master.protocol("WM_DELETE_WINDOW", lambda: file_mod.ask_quit(self)) 
         file_gui.load_gui(self)
-
+        
 
 if __name__ == '__main__' :
     root = tk.Tk()

@@ -40,10 +40,23 @@ def load_gui(self):
     self.btn_destfolder.grid(row=5, column=0, columnspan=2, padx=(20,0), pady=(20,0), sticky=W)
 
     self.btn_filecheck = tk.Button(self.master,bg="#25c638", width=15, height=2, text="Check Files",
-                            command=lambda: file_mod.copy_modified_files(self.srcFolder, self.destFolder))
-    self.btn_filecheck.grid(row=8, column=0, columnspan=10, padx=(20,0), pady=(40,0), sticky=W)
-    
+                            command=lambda: file_mod.file_check_initiated(self.srcFolder, self.destFolder, self.lbl_checktime, self.lbl_agotime,self.btn_refresh))
+    self.btn_filecheck.grid(row=8, column=0, columnspan=2, padx=(20,0), pady=(40,0), sticky=W)
 
+    self.lbl_checktime = tk.Label(self.master, fg="#2d8390", font=(None, 8, 'bold'),  text="No previous file check time found")  
+    self.lbl_checktime.grid(row=8, padx=(15,0), pady=(20,0), column=2, columnspan=6, sticky=W)
+
+    self.lbl_agotime = tk.Label(self.master, fg="black", font=(None, 8, 'bold'),  text="")  
+    self.lbl_agotime.grid(row=8, padx=(15,0), pady=(60,0), column=2, columnspan=4, sticky=W)
+
+    self.btn_refresh = tk.Button(self.master, width=12, height=1, text="Refresh",
+                            command=lambda: file_mod.check_for_last_file_check(self.lbl_checktime, self.lbl_agotime, self.btn_refresh))
+    self.btn_refresh.grid(row=8, column=7, columnspan=3, padx=(0,0), pady=(60,0), sticky=W)
+
+    
+    
+    file_mod.create_db(self)
+    file_mod.check_for_last_file_check(self.lbl_checktime, self.lbl_agotime,self.btn_refresh)
 
 
 if __name__ == "__main__":
