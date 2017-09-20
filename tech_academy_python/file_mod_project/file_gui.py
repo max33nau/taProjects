@@ -49,9 +49,9 @@ def load_gui(self):
     self.lbl_agotime = tk.Label(self.master, fg="black", font=(None, 8, 'bold'),  text="")  
     self.lbl_agotime.grid(row=8, padx=(15,0), pady=(60,0), column=2, columnspan=4, sticky=W)
 
-    self.btn_refresh = tk.Button(self.master, width=12, height=1, text="Refresh",
+    self.btn_refresh = tk.Button(self.master,bg="#CCCCCC", width=12, height=1, text="Refresh",
                             command=lambda: file_mod.check_for_last_file_check(self.lbl_checktime, self.lbl_agotime, self.btn_refresh))
-    self.btn_refresh.grid(row=8, column=7, columnspan=3, padx=(0,0), pady=(60,0), sticky=W)
+    self.btn_refresh.grid(row=8, column=7, columnspan=3, padx=(0,0), pady=(40,0), sticky=W)
 
     
     
