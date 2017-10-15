@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace CS_ASP_008
+namespace SimpleCalculatorChallenge
 {
     public class Global : System.Web.HttpApplication
     {
