@@ -14,56 +14,16 @@ namespace ChallengePostalCalculatorHelperMethods
 
         }
 
-        protected void widthInput_TextChanged(object sender, EventArgs e)
+        protected void handleChanged(object sender, EventArgs e)
         {
-            handleTextChange();
+            handleInputChange();
         }
 
-        protected void heightInput_TextChanged(object sender, EventArgs e)
+        protected void handleInputChange()
         {
-            handleTextChange();
-        }
-
-        protected void lengthInput_TextChanged(object sender, EventArgs e)
-        {
-            handleTextChange();
-        }
-
-        protected void groundRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            groundRadioSelected();
-        }
-
-        protected void airRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            airRadioSelected();
-        }
-
-        protected void nextDayRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            nextDayRadioSelected();
-        }
-
-        protected void handleTextChange()
-        {
-            if (groundRadio.Checked) groundRadioSelected();
-            else if (airRadio.Checked) airRadioSelected();
-            else if (nextDayRadio.Checked) nextDayRadioSelected();
-        }
-
-        protected void groundRadioSelected()
-        {
-            determinePackagePrice(.15, "Ground");
-        }
-
-        protected void airRadioSelected()
-        {
-            determinePackagePrice(.25, "Air");
-        }
-
-        protected void nextDayRadioSelected()
-        {
-            determinePackagePrice(.45, "Next Day");
+            if (groundRadio.Checked) determinePackagePrice(.15, "Ground"); 
+            else if (airRadio.Checked) determinePackagePrice(.25, "Air");
+            else if (nextDayRadio.Checked) determinePackagePrice(.45, "Next Day");
         }
 
         protected void determinePackagePrice(double multiplier, string shippingMethod)
@@ -83,8 +43,7 @@ namespace ChallengePostalCalculatorHelperMethods
                 )
                     return;
 
-
-                double finalPrice = getFinalPrice(width, height, multiplier, length);
+                double finalPrice = getVolume(width, height, length) * multiplier;
                 string finalResult = String.Format("Your parcel will cost <strong> {0:C} </strong> for shipping method {1}", finalPrice, shippingMethod);
                 setResultText(finalResult);
             }
@@ -115,9 +74,9 @@ namespace ChallengePostalCalculatorHelperMethods
             }
         }
 
-        protected double getFinalPrice(double width, double height, double multiplier, double length = 1.0)
+        protected double getVolume(double width, double height, double length = 1.0)
         {
-            return (width * height *multiplier * length);
+            return (width * height * length);
         }
 
         protected void setResultText(string result)

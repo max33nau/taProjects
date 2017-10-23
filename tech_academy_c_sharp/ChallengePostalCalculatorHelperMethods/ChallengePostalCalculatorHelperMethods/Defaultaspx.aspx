@@ -12,22 +12,22 @@
         <div>
            
             Width:
-            <asp:TextBox ID="widthInput" runat="server" AutoPostBack="True" OnTextChanged="widthInput_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="widthInput" runat="server" AutoPostBack="True" OnTextChanged="handleChanged"></asp:TextBox>
 &nbsp;
             <br />
             Height:
-            <asp:TextBox ID="heightInput" runat="server" AutoPostBack="True" OnTextChanged="heightInput_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="heightInput" runat="server" AutoPostBack="True" OnTextChanged="handleChanged"></asp:TextBox>
 &nbsp;<br />
             Length:
-            <asp:TextBox ID="lengthInput" runat="server" AutoPostBack="True" OnTextChanged="lengthInput_TextChanged"></asp:TextBox>
+            <asp:TextBox ID="lengthInput" runat="server" AutoPostBack="True" OnTextChanged="handleChanged"></asp:TextBox>
             <br />
             <br />
             <br />
-            <asp:RadioButton ID="groundRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="groundRadio_CheckedChanged" Text="Ground" />
+            <asp:RadioButton ID="groundRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="handleChanged" Text="Ground" />
             <br />
-            <asp:RadioButton ID="airRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="airRadio_CheckedChanged" Text="Air" />
+            <asp:RadioButton ID="airRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="handleChanged" Text="Air" />
             <br />
-            <asp:RadioButton ID="nextDayRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="nextDayRadio_CheckedChanged" Text="Next Day" />
+            <asp:RadioButton ID="nextDayRadio" runat="server" AutoPostBack="True" GroupName="shipping_type" OnCheckedChanged="handleChanged" Text="Next Day" />
             <br />
             <br />
             <br />
