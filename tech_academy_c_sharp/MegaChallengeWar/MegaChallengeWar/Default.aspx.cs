@@ -16,12 +16,15 @@ namespace MegaChallengeWar
 
         protected void startGameButton_Click(object sender, EventArgs e)
         {
-            Player player1 = new Player("Bob", "blue");
-            Player player2 = new Player("Fred", "red");
+            List<Player> players = new List<Player>()
+            {
+                new Player("Aquaman", "blue"),
+                new Player("Superman", "red")
+            };
             Random random = new Random();
             Game game = new Game(random);
-            Battle battle = new Battle(player1, player2);
-            dealCardsLabel.Text = game.dealCards(player1, player2);
+            dealCardsLabel.Text = game.dealCards(players);
+            Battle battle = new Battle(players);
             beginBattleLabel.Text = battle.beginBattle();
         }
     }

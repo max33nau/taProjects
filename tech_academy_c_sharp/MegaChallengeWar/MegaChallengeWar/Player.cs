@@ -19,10 +19,9 @@ namespace MegaChallengeWar
 
         }
 
-        public int totalAmountOfCards()
-        {
-            int total = Cards.Count();
-            return total;
-        } 
+        public Card getTopCard() { return Cards.ElementAt(0); }
+
+        public void removeTopCard() { Cards.RemoveAt(0); }
+
     }
 }

@@ -14,7 +14,7 @@ namespace MegaChallengeWar
             _random = random;
         }
 
-        public string dealCards(Player player1, Player player2)
+        public string dealCards(List<Player> Players)
         {
             string dealingResult = "<h5> Dealing cards.... <br /> <br />";
             Deck deck = new Deck();
@@ -22,14 +22,20 @@ namespace MegaChallengeWar
             int totalAmountOfCards = deck.Cards.Count();
             while (cardsDealt != totalAmountOfCards)
             {
-                Player playerToDealTo = (cardsDealt % 2 == 0) ? player1 : player2;
-                int totalCardsLeft = deck.Cards.Count();
-                int randomCardNumber = _random.Next(totalCardsLeft);
-                Card card = deck.Cards.ElementAt(randomCardNumber);
-                playerToDealTo.Cards.Add(card);
-                deck.Cards.RemoveAt(randomCardNumber);
-                dealingResult += String.Format("{0} was dealt a {1} of {2} <br />", playerToDealTo.Name, card.Name, card.Suite);
-                cardsDealt++;
+                
+                foreach (Player player in Players)
+                {
+                    if (cardsDealt != totalAmountOfCards)
+                    {
+                        int totalCardsLeft = deck.Cards.Count();
+                        int randomCardNumber = _random.Next(totalCardsLeft);
+                        Card card = deck.Cards.ElementAt(randomCardNumber);
+                        player.Cards.Add(card);
+                        deck.Cards.RemoveAt(randomCardNumber);
+                        dealingResult += String.Format("{0} was dealt a {1} of {2} <br />", player.Name, card.Name, card.Suite);
+                        cardsDealt++;
+                    }
+                }
             }
             return dealingResult;
         }
