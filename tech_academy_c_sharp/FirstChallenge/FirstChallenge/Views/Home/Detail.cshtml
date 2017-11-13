@@ -1,0 +1,29 @@
+﻿@model FirstChallenge.Models.ComicBook
+@{
+    ViewBag.Title = "Detail";
+    var comicBook = Model;
+}
+
+<h2>Details About @comicBook.ComicTitle #@(comicBook.EpisodeNumber)</h2>
+
+<h4>Episode Title: @comicBook.EpisodeTitle</h4>
+
+<div>
+    <strong> Starring: </strong>
+    <ul>
+        @foreach (var characterName in comicBook.Characters)
+        {
+            <li> @characterName.Name </li>
+        }
+    </ul>
+
+</div>
+
+<hr />
+
+<p>
+    @Html.ActionLink("Back to All Comics", "Index")
+</p>
+
+
+
