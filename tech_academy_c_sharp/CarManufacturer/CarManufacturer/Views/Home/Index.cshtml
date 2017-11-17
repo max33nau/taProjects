@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Cars For Days";
+}
+
+
+ 
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Car Lot</h1>
+    <p class="lead">Add / View Cars in the car lot</p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-xs-5">
+    <h3>Add a car Here </h3>
+    <form>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Make</label>
+            <input class="form-control" type="text" data-bind="textInput: newCar.make"  />
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Model</label>
+            <input class="form-control" type="text" data-bind="textInput: newCar.model"  />
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Year</label>
+            <input class="form-control" type="number" data-bind="textInput: newCar.year"  />
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label>Color</label>
+            <input class="form-control" type="text" data-bind="textInput: newCar.color"  />
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <button type="button" data-bind="click: addCar" class="btn btn-success">Add Car</button>
+        </div>
+      </div>
+    </form>
+  </div>
+    <div class="col-xs-7">
+    <h3>Current Cars on Lot (<span data-bind="text: cars().length"></span>) </h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Color</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: cars">
+        <tr>
+          <td data-bind="text: make"></td>
+          <td data-bind="text: model"></td>
+          <td data-bind="text: year"></td>
+          <td data-bind="text: color"></td>
+          <td data-bind="click: $parent.removeCar" 
+            class="text-danger"> Remove</td>
+        </tr>
+      </tbody>
+    </table>  
+  </div>
+</div> 
+
