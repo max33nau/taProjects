@@ -4,7 +4,6 @@
 }
 
 
- 
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -23,24 +22,32 @@
           <div class="form-group">
             <label>Make</label>
             <input class="form-control" type="text" data-bind="textInput: newCar.make"  />
+            <span class="text-danger" 
+              data-bind="visible: newCar.make().length == 0 && submitAttempt">Required</span>
           </div>
         </div>
         <div class="col-xs-12">
           <div class="form-group">
             <label>Model</label>
             <input class="form-control" type="text" data-bind="textInput: newCar.model"  />
+            <span class="text-danger" 
+              data-bind="visible: newCar.model().length == 0 && submitAttempt">Required</span>
           </div>
         </div>
         <div class="col-xs-12">
           <div class="form-group">
             <label>Year</label>
             <input class="form-control" type="number" data-bind="textInput: newCar.year"  />
+            <span class="text-danger" 
+              data-bind="visible: newCar.year().length == 0 && submitAttempt">Required</span>          
           </div>
         </div>
         <div class="col-xs-12">
           <div class="form-group">
             <label>Color</label>
             <input class="form-control" type="text" data-bind="textInput: newCar.color"  />
+            <span class="text-danger" 
+              data-bind="visible: newCar.color().length == 0 && submitAttempt">Required</span>
           </div>
         </div>
         <div class="col-xs-12">
@@ -68,7 +75,7 @@
           <td data-bind="text: year"></td>
           <td data-bind="text: color"></td>
           <td data-bind="click: $parent.removeCar" 
-            class="text-danger"> Remove</td>
+            class="text-danger car-table-button"> Remove</td>
         </tr>
       </tbody>
     </table>  

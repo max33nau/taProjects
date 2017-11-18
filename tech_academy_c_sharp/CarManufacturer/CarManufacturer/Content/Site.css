@@ -16,3 +16,10 @@ textarea {
     max-width: 280px;
 }
 
+.car-table-button {
+  cursor: pointer;
+}
+
+.car-table-button:hover {
+  text-decoration: underline;
+}
